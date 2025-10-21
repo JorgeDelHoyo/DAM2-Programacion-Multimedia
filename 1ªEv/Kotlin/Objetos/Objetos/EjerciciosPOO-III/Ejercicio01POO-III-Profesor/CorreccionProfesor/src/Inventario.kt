@@ -16,6 +16,7 @@
  * En  el programa principal probar la funcionalidad del gestor agregando , eliminando diferentes productos y mostrar la lista de productos actuales.
  *
  */
+<<<<<<< HEAD
 object GestorInventario {
     private val inventario = mutableMapOf<Int, Producto>()
     fun ejecutarOperacion(op: OperacionInventario): String {
@@ -46,3 +47,23 @@ object GestorInventario {
         }
     }
 }
+=======
+
+object Inventario{
+    private val listaProductos : MutableMap<Int,Producto> = mutableMapOf<Int,Producto>()
+
+    /**
+    fun ejecutarOperaciones(operacion : OperacionesProductos) : Any{
+        return when(operacion){
+            is OperacionesProductos.Eliminar -> {
+                listaProductos.remove(operacion.idprod)
+
+            }
+            is OperacionesProductos.Actualizar -> {
+                listaProductos[opera]
+            }
+        }
+    }
+    */
+}
+>>>>>>> 0ff627791c977f33edffdd3dbb86f655b08f0256

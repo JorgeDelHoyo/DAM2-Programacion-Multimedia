@@ -15,11 +15,14 @@
  * * Error -> mostrará un mensaje de error
  * * Cargando -> mostrará un mensaje en la pantalla de “Cargando información ..”
  *
+<<<<<<< HEAD
  * A nivel global de la aplicación existe un único Administrador de Sesión  que realiza tres acciones:
  * * Logear el usuario : Muestra un mensaje indicando que el usuario ha iniciado la sesión correctamente
  * * Cerrar sesion : Establece el usuario a null y muestra un mensaje de cierre de sesión.
  * * Obtener usuario actual logueado : Muestra el nombre del usuario que tiene iniciada la sesión actualmente
  *
+=======
+>>>>>>> 0ff627791c977f33edffdd3dbb86f655b08f0256
  */
 
 open class Usuario(val ID: String, val nombre : String, val email : String, val tipoUsuario: TipoUsuario){
