@@ -1,0 +1,39 @@
+/**
+ * Implementa un sistema de autenticación con diferentes tipos de usuarios: Administrador , moderador , usuario.
+ * Cualquiera de estos usuarios consta de un identificador, un nombre y una dirección de correo electrónico.
+ * Además esta clase Usuario contiene tres métodos:
+ * * Un validador de cuentas de correos electrónicos válidas, de manera que solo se puedan crear cuentas con el email @gmail.com
+ *
+ * * Un validador de cuenta de usuario válida, en el que el nombre de usuario tenga entre 3 y 20 caracteres
+ * * * y solo se permiten caracteres alfanuméricos y el caracter _
+ *
+ * * Un metodo que autentica al usuario siempres y cuando los dos validadores anteriores sean correctos.
+ * * * En este caso creará un objeto de tipo Usuario con los datos correspondientes.
+ *
+ * Cuando un usuario intenta inciar sesión tendrá tres posibles resultados:
+ * * Éxito  (si el email y el nombre de usuario validos  )-> en cuyo caso se creará el objeto usuario
+ * * Error -> mostrará un mensaje de error
+ * * Cargando -> mostrará un mensaje en la pantalla de “Cargando información ..”
+ *
+ * A nivel global de la aplicación existe un único Administrador de Sesión  que realiza tres acciones:
+ * * Logear el usuario : Muestra un mensaje indicando que el usuario ha iniciado la sesión correctamente
+ * * Cerrar sesion : Establece el usuario a null y muestra un mensaje de cierre de sesión.
+ * * Obtener usuario actual logueado : Muestra el nombre del usuario que tiene iniciada la sesión actualmente
+ *
+ */
+
+open class Usuario(val ID: String, val nombre : String, val email : String, val tipoUsuario: TipoUsuario){
+
+    companion object{
+
+        // Funcion para validar que un email acabe por @gmail.com
+        fun emailValido(email : String) : Boolean{
+            return email.endsWith("@gmail.com",ignoreCase = true)
+        }
+
+        fun nombreValido(nombre : String) : Boolean{
+            val regex = Regex("^[a-zA-Z0-9_]{3,20}$")
+            return regex.matches(nombre)
+        }
+    }
+}
