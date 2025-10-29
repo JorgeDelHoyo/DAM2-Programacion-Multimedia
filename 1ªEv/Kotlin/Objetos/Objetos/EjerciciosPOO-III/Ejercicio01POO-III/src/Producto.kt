@@ -23,7 +23,11 @@
 data class Producto(val ID : Int, val nombre : String, val precio : Double){
     // Definir miembros estáticos
     companion object{
+<<<<<<< HEAD
+        private var contadorID = 0 // Variable ID autoincrementable
+=======
         var contadorID = 0 // Variable ID autoincrementable
+>>>>>>> 0ff627791c977f33edffdd3dbb86f655b08f0256
 
         // Funcion para crear un producto sin necesidad de pasarle el ID
         fun crear(nombre : String, precio: Double) : Producto{

@@ -17,26 +17,8 @@
  *
  */
 
-<<<<<<< HEAD
-data class Producto(val id: Int, val nombre: String, val precio: Double) {
-    companion object {
-        private var contadorId = 0
-
-        fun generarId(): Int = ++contadorId
-
-        fun crear(nombre: String, precio: Double): Producto {
-            return Producto(generarId(), nombre, precio)
-=======
-data class Producto(val id : Int, val nombre : String, val precio : Double){
-    companion object{
-        private var id : Int = 0
-        // Funcion para incrementar el id
-        fun aumentarID() : Int = ++id
-
-        // Funcion para crear un objeto
-        fun crear(nombre : String, precio: Double) : Producto{
-            return Producto(aumentarID(),nombre,precio)
->>>>>>> 0ff627791c977f33edffdd3dbb86f655b08f0256
-        }
-    }
+sealed class OperacionInventario {
+    data class Agregar(val producto: Producto) : OperacionInventario()
+    data class Eliminar(val id: Int) : OperacionInventario()
+    data class Actualizar(val id: Int, val nuevoPrecio: Double) : OperacionInventario()
 }
