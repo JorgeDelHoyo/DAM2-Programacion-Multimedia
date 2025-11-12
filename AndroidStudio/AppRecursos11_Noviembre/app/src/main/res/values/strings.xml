@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AppRecursos(11_Noviembre)</string>
+
+    <string name="titulo_pantalla">Demo de Recursos</string>
+
+    <plurals name="contador_elementos">
+        <item quantity="one">Tienes 1 elemento</item>
+        <item quantity="other">Tienes %d elementos</item>
+    </plurals>
+</resources>
