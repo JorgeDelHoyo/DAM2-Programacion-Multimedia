@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,8 +18,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,7 +42,7 @@ class MainActivity : ComponentActivity() {
                      *      modifier = Modifier.padding(innerPadding)
                      * )
                      */
-                    newWindow(modifier = Modifier.padding(innerPadding))
+                    gestorPantallas(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -58,9 +62,9 @@ fun Greeting(name:String, modifier: Modifier = Modifier){
 
 
     Surface(color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp, horizontal = 8.dp)){
+        modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp, horizontal = 8.dp)){
 
-        Row(modifier = Modifier.padding(24.dp)) {
+        Row(modifier = Modifier.padding(16.dp)) {
 
             Column(modifier = Modifier.fillMaxWidth().weight(1f).padding(bottom = extraPadding)) {
                 Text(
@@ -106,20 +110,44 @@ fun GreetingPreview() {
     }
 }
 
-/**
- * Centrar texto y boton
- */
+
 @Composable
-fun newWindow(modifier: Modifier = Modifier){
-    val state = remember { mutableStateOf(false) }
-    Surface(color = MaterialTheme.colorScheme.secondary, modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp).padding(horizontal = 12.dp)){
-        Row (modifier = Modifier.padding(24.dp)) {
-            Column (modifier = Modifier.padding(24.dp).weight(1f).fillMaxWidth()) {
-                Text(text = "Click para cambiar de pantalla")
-            }
-            ElevatedButton(onClick = {state.value = !state.value}) {
-                Text(if (state.value) "Show less" else "Show more")
-            }
+fun nuevaPantalla(modifier: Modifier = Modifier, estado : MutableState<Boolean>){
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Text(text = "Bienvenidos a neustra app")
+        ElevatedButton(
+            modifier = Modifier.padding(vertical = 24.dp),
+            onClick = { estado.value = false },
+        ) {
+            Text(text = "Continue",
+                color = Color.Magenta)
         }
+    }
+}
+
+@Composable
+fun gestorPantallas (modifier: Modifier = Modifier){
+    // RememberSaveable guarda el estado de la variable aunque cambien los externos
+    val estado = rememberSaveable { mutableStateOf(true) }
+
+    if(estado.value){
+        nuevaPantalla(modifier,estado)
+    }else{
+        Greeting2(names = listOf("Android", "DAM"), modifier = modifier)
+    }
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun nuevaPantallaPreview() {
+    BasicsTheme {
+        gestorPantallas()
     }
 }
